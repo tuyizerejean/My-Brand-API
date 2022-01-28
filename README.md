@@ -1,1 +1,1 @@
-# My-Brand-API
+# my-brand-api
