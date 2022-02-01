@@ -1,11 +1,13 @@
 import express from "express";
+import { QueryControllers } from "../../controllers/queriesController.js";
 
 const route = express.Router();
 
-route.get("/", (req, res, next) => {
-  res
-    .status(200)
-    .json({ status: 200, message: "this will return all queries", data: "" });
-});
+const queryControllers = new QueryControllers();
+
+route.post("/", queryControllers.sendQuery);
+route.get("/", queryControllers.getAllQuery);
+route.get("/:id", queryControllers.getOneQuery);
+route.delete("/:id", queryControllers.deleteQuery);
 
 export default route;
