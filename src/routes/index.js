@@ -3,6 +3,7 @@ import welcomeRoutes from "./api/welcomeRoutes.js";
 import articleRoutes from "./api/articleRoutes.js";
 import commentRoutes from "./api/commentRoutes.js";
 import queriesRoutes from "./api/queriesRoutes.js";
+import userRoutes from "./api/userRoutes.js";
 
 const routes = express.Router();
 
@@ -10,5 +11,6 @@ routes.use("/", welcomeRoutes);
 routes.use("/aritcles", articleRoutes);
 routes.use("/comments", commentRoutes);
 routes.use("/queries", queriesRoutes);
+routes.use("/users", userRoutes);
 
 export default routes;
