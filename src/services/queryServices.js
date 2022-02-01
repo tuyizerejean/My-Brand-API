@@ -13,7 +13,15 @@ export const getAllQueries = async (data) => {
 
 export const getOneQuery = async (id) => {
   const queries = await Query.findOne({ _id: id });
-  return queries;
+  try {
+    if (!queries) {
+      return "Query  not found";
+    } else {
+      return queries;
+    }
+  } catch (error) {
+    return "query not found";
+  }
 };
 
 export const deleteQuery = async (id) => {

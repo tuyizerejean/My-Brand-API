@@ -12,8 +12,16 @@ export const getAllArticlesService = async () => {
 };
 
 export const getOneArticleService = async (id) => {
-  const article = await Article.findOne({ _id: id });
-  return article;
+  try {
+    const article = await Article.findOne({ _id: id });
+    if (!article) {
+      return "article article not found";
+    } else {
+      return article;
+    }
+  } catch (error) {
+    return "article article not found";
+  }
 };
 
 export const updateArticle = async (id, data) => {

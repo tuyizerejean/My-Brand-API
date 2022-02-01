@@ -40,11 +40,15 @@ export class QueryControllers {
   async getOneQuery(req, res, next) {
     try {
       const query = await getOneQuery(req.params.id);
-      res.status(200).json({
-        status: 200,
-        message: "Your querry is sent successfully",
-        data: query,
-      });
+      if (typeof query !== "string") {
+        res.status(200).json({
+          status: 200,
+          message: "Query retrieved successfully",
+          data: query,
+        });
+      } else {
+        res.status(404).json({ status: 404, message: query });
+      }
     } catch (error) {
       console.log(error);
     }
