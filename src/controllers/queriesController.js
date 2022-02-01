@@ -34,7 +34,11 @@ export class QueryControllers {
         data: queries,
       });
     } catch (error) {
+<<<<<<< HEAD
       res.status(404).json({ status: 404, message: "Query  not found" });
+=======
+      console.log(error);
+>>>>>>>  working on Query CRUD
     }
   }
   async getOneQuery(req, res, next) {
