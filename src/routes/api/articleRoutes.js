@@ -1,7 +1,7 @@
 import express from "express";
 import { ArticleController } from "./../../controllers/articleController.js";
 import multer from "multer";
-
+// image validation
 const route = express.Router();
 const storage = multer.diskStorage({});
 const fileFilter = (req, file, cb) => {
