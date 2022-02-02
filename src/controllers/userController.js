@@ -33,7 +33,10 @@ export class UserControllers {
         });
       }
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
   async login(req, res, next) {
@@ -54,7 +57,10 @@ export class UserControllers {
         res.status(403).json({ status: 403, message: "Invalid credentials" });
       }
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 }
