@@ -22,7 +22,7 @@ export class QueryControllers {
         data: query,
       });
     } catch (error) {
-      return "Query not created";
+      res.status(404).json({ status: 404, message: "Query  not created" });
     }
   }
   async getAllQuery(req, res, next) {
@@ -34,7 +34,7 @@ export class QueryControllers {
         data: queries,
       });
     } catch (error) {
-      return "Query not exist";
+      res.status(404).json({ status: 404, message: "Query  not found" });
     }
   }
   async getOneQuery(req, res, next) {
@@ -58,7 +58,7 @@ export class QueryControllers {
       const result = await deleteQuery(req.params.id);
       res.status(200).json({ status: 200, message: result });
     } catch (error) {
-      return "Query not Exist";
+      res.status(404).json({ status: 404, message: "Query  not exist" });
     }
   }
 }
