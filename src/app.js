@@ -31,3 +31,4 @@ const server = async () => {
   console.log(process.env.DEVELOPMENT_DB);
 };
 server();
+export default app;
