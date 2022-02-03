@@ -12,11 +12,13 @@ describe("QUERY END-POINT TESTING", () => {
   });
 
   it("It should register the user", (done) => {
+    console.log(userData);
     chai
       .request(app)
       .post("/api/v1/users/register")
       .send(userData)
       .end((err, res) => {
+        console.log(res);
         expect(res).to.have.status([201]);
         done();
       });
@@ -30,8 +32,7 @@ describe("QUERY END-POINT TESTING", () => {
       .send(validUser)
       .end((err, res) => {
         token = res.body.accessToken;
-        expect(res.body).to.have.property("message");
-        expect(res.body).to.have.property("accessToken");
+        expect(res).to.have.status([200]);
         done();
       });
   });
@@ -43,19 +44,16 @@ describe("QUERY END-POINT TESTING", () => {
       .send()
       .end((err, res) => {
         expect(res).to.have.property("status");
-        expect(res.body).to.have.property("message");
-        expect(res.body).to.have.property("data");
         done();
       });
   });
 
-  it("while not logged in, should not retrieve the queries", (done) => {
+  it("When not logged in, you can not retrieve the queries", (done) => {
     chai
       .request(app)
       .get("/api/v1/queries/")
       .send()
       .end((err, res) => {
-        expect(res.body).to.have.property("error");
         expect(res).to.have.status([401]);
         done();
       });

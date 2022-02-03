@@ -28,7 +28,6 @@ const server = async () => {
   } catch (error) {
     console.log(error);
   }
-  console.log(process.env.DEVELOPMENT_DB);
 };
 server();
 export default app;
