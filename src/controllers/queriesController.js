@@ -22,7 +22,10 @@ export class QueryControllers {
         data: query,
       });
     } catch (error) {
-      res.status(404).json({ status: 404, message: "Query  not created" });
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
   async getAllQuery(req, res, next) {
@@ -34,7 +37,10 @@ export class QueryControllers {
         data: queries,
       });
     } catch (error) {
-      res.status(404).json({ status: 404, message: "Query  not found" });
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
   async getOneQuery(req, res, next) {
@@ -47,10 +53,13 @@ export class QueryControllers {
           data: query,
         });
       } else {
-        res.status(404).json({ status: 404, message: query });
+        res.status(404).json({ status: 500, message: query });
       }
     } catch (error) {
-      res.status(404).json({ status: 404, message: "Query  not found" });
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
   async deleteQuery(req, res, next) {
@@ -58,7 +67,10 @@ export class QueryControllers {
       const result = await deleteQuery(req.params.id);
       res.status(200).json({ status: 200, message: result });
     } catch (error) {
-      res.status(404).json({ status: 404, message: "Query  not exist" });
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 }

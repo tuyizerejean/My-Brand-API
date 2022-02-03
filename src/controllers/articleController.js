@@ -23,7 +23,10 @@ export class ArticleController {
         data: article,
       });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 
@@ -36,7 +39,10 @@ export class ArticleController {
         data: articles,
       });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
   async getArticle(req, res, next) {
@@ -49,10 +55,13 @@ export class ArticleController {
           data: article,
         });
       } else {
-        res.status(404).json({ status: 404, message: article });
+        res.status(404).json({ status: 500, message: article });
       }
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 
@@ -68,7 +77,10 @@ export class ArticleController {
         data: article,
       });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 
@@ -77,7 +89,10 @@ export class ArticleController {
       const result = await deleteArticle(req.params.id);
       res.status(200).json({ status: 200, message: result });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({
+        status: 500,
+        message: "Sorry we are experiencing server error",
+      });
     }
   }
 }
