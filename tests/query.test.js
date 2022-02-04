@@ -32,7 +32,6 @@ describe("QUERY END-POINT TESTING", () => {
         token = res.body.accessToken;
         expect(res).to.have.status([200]);
         done();
-        console.log(res);
       });
   });
   it("While logged in Should retrieve the queries", (done) => {
