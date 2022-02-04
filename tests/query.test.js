@@ -12,13 +12,11 @@ describe("QUERY END-POINT TESTING", () => {
   });
 
   it("It should register the user", (done) => {
-    console.log(userData);
     chai
       .request(app)
       .post("/api/v1/users/register")
       .send(userData)
       .end((err, res) => {
-        console.log(res);
         expect(res).to.have.status([201]);
         done();
       });
