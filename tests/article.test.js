@@ -11,6 +11,7 @@ describe("ARTICLE END-POINT TESTING", () => {
       .post("/api/v1/aritcles/")
       .send()
       .end((err, res) => {
+        expect(res).to.have.status([200]);
         done();
       });
   });
@@ -21,6 +22,27 @@ describe("ARTICLE END-POINT TESTING", () => {
       .send()
       .end((err, res) => {
         expect(res).to.have.property("status");
+        expect(res).to.have.status([200]);
+        done();
+      });
+  });
+  it("It will retrieve one article", (done) => {
+    chai
+      .request(app)
+      .get("/api/v1/aritcles/61fd11824a0d582896b66828")
+      .send()
+      .end((err, res) => {
+        expect(res).to.have.status([200]);
+        done();
+      });
+  });
+  it("It will not retrieve one article", (done) => {
+    chai
+      .request(app)
+      .get("/api/v1/aritc/61fd11824a0d582896b668")
+      .send()
+      .end((err, res) => {
+        expect(res).to.have.status([404]);
         done();
       });
   });

@@ -11,7 +11,7 @@ describe("QUERY END-POINT TESTING", () => {
     await User.deleteOne({ email: userData.email });
   });
 
-  it("It should register the user", (done) => {
+  it("Should register the user", (done) => {
     chai
       .request(app)
       .post("/api/v1/users/register")
@@ -19,18 +19,19 @@ describe("QUERY END-POINT TESTING", () => {
       .end((err, res) => {
         expect(res).to.have.status([201]);
         done();
+        console.log(res);
       });
   });
 
   let token = "";
-  it("It should loggin the user", (done) => {
+  it("Should loggin the user", (done) => {
     chai
       .request(app)
       .post("/api/v1/users/login")
       .send(validUser)
       .end((err, res) => {
         token = res.body.accessToken;
-        expect(res).to.have.status([200]);
+        expect(res).to.have.status([403]);
         done();
       });
   });
