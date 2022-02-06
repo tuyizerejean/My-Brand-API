@@ -8,7 +8,7 @@ export class UserControllers {
     try {
       const exist = await userExist(req.body.email);
       if (exist) {
-        res.status(409).json({
+        return res.status(409).json({
           status: 409,
           message: "User with this email already exist. use different one",
         });
@@ -26,14 +26,14 @@ export class UserControllers {
           picture: req.body.picture,
         };
         const createdUser = await createUser(user);
-        res.status(201).json({
+        return res.status(201).json({
           status: 201,
           message: "user registered successfully",
           user: createdUser,
         });
       }
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         status: 500,
         message: "Sorry we are experiencing server error",
       });
@@ -45,19 +45,23 @@ export class UserControllers {
       if (exist) {
         const valid = await comparePassword(req.body.password, exist.password);
         if (!valid) {
-          res.status(403).json({ status: 403, message: "Invalid credentials" });
+          return res
+            .status(403)
+            .json({ status: 403, message: "Invalid credentials" });
         }
         const token = await generateToken({ id: exist._id });
-        res.status(200).json({
+        return res.status(200).json({
           status: 200,
           message: "Logged in successfully",
           accessToken: token,
         });
       } else {
-        res.status(403).json({ status: 403, message: "Invalid credentials" });
+        return res
+          .status(403)
+          .json({ status: 403, message: "Invalid credentials" });
       }
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         status: 500,
         message: "Sorry we are experiencing server error",
       });

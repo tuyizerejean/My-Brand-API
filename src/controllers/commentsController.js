@@ -12,11 +12,11 @@ export class CommentControllers {
         comment: req.body.comment,
       };
       const comment = await createComment(data);
-      res
+      return res
         .status(201)
         .json({ message: "the comment is added", comment: comment });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         status: 500,
         message: "Sorry we are experiencing server error",
       });
@@ -25,12 +25,12 @@ export class CommentControllers {
   async getComments(req, res, next) {
     try {
       const comments = await getArticleComments(req.params.articleid);
-      res.status(200).json({
+      return res.status(200).json({
         message: "Comments retrieved successfully",
         comments: comments,
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         status: 500,
         message: "Sorry we are experiencing server error",
       });
