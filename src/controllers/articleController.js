@@ -23,6 +23,7 @@ export class ArticleController {
         data: article,
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         status: 500,
         message: "Sorry we are experiencing server error",

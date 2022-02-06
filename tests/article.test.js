@@ -5,13 +5,13 @@ import "dotenv/config";
 
 chai.use(chaiHttp);
 describe("ARTICLE END-POINT TESTING", () => {
-  it("Should create the article", (done) => {
+  it("Should not create the article", (done) => {
     chai
       .request(app)
       .post("/api/v1/aritcles/")
       .send()
       .end((err, res) => {
-        expect(res).to.have.status([404]);
+        expect(res).to.have.status([401]);
         done();
       });
   });
@@ -22,11 +22,11 @@ describe("ARTICLE END-POINT TESTING", () => {
       .send()
       .end((err, res) => {
         expect(res).to.have.property("status");
-        expect(res).to.have.status([404]);
+        expect(res).to.have.status([200]);
         done();
       });
   });
-  it("Should retrieve one article", (done) => {
+  it("Should not retrieve one article", (done) => {
     chai
       .request(app)
       .get("/api/v1/aritcles/61fd11824a0d582896b66828")
