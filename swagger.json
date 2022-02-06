@@ -68,26 +68,26 @@
             {
               "name": "username",
               "in": "formData",
-              "description": "username",
+              "description": "Username",
               "required": true
             },
             {
               "name": "email",
               "in": "formData",
-              "description": "content",
+              "description": "Email",
               "required": true
             },
             {
               "name": "password",
               "in": "formData",
-              "description": "content",
+              "description": "Password",
               "required": true
             },
             {
               "name": "picture",
               "in": "formData",
               "type": "file",
-              "description": "image",
+              "description": "Image",
               "required": true
             }
           ],
@@ -203,7 +203,7 @@
             "parameters": [
               {
                 "name": "id",
-                "in": "header",
+                "in": "path",
                 "description": "Add Aricle Id",
                 "required": true
               }
@@ -226,8 +226,14 @@
             "operationId": "updateArticles",
             "parameters": [
               {
-                "name": "title",
+                "name": "id",
                 "in": "path",
+                "description": "Add Aricle Id",
+                "required": true
+              },
+              {
+                "name": "title",
+                "in": "formData",
                 "description": "title",
                 "required": true
               },
@@ -261,43 +267,22 @@
   "/api/v1/queries": {
     "post": {
       "tags": ["Qeuries"],
-      "summary": "Send query",
-      "description": "Send  query",
-      "operationId": "send  query",
+      "summary": "Send message",
+      "description": "Send message",
+      "operationId": "SendMessage",
       "parameters": [
         {
-          "name": "name",
-          "in": "formData",
-          "description": "name",
-          "required": true
-        },
-        {
-          "name": "email",
-          "in": "formData",
-          "description": "email",
-          "required": true
-        },
-        {
-          "name": "subject",
-          "in": "formData",
-          "description": "subject",
-          "required": true
-        },
-        {
-          "name": "message",
-          "in": "formData",
-          "description": "message",
-          "required": true
-        },
-        {
-          "name": "location",
-          "in": "formData",
-          "description": "location",
-          "required": true
+          "name": "body",
+          "in": "body",
+          "description": "Send message",
+          "required": true,
+          "schema": {
+            "$ref": "#/definition/SendMessage"
+          }
         }
       ],
       "responses": {
-        "200": {
+        "201": {
           "description": "Success"
         }
       }
@@ -370,34 +355,32 @@
         ]
       }
     },
-"/api/v1/comments/{articleid}": {
+"/api/v1/comments/{articleId}": {
   "post": {
     "tags": ["Comments"],
-    "summary": "Send comment",
-    "description": "Send  comment",
-    "operationId": "send  comment",
+    "summary": "Send comment to any article using its ID",
+    "description": "Send comment to any article",
+    "operationId": "SendMessage",
     "parameters": [
       {
-        "name": "articleid",
+        "name": "articleId",
         "in": "path",
         "description": "articleid",
         "required": true
       },
       {
-        "name": "name",
-        "in": "formData",
-        "description": "name",
-        "required": true
-      },
-      {
-        "name": "comment",
-        "in": "formData",
-        "description": "comment",
-        "required": true
+        "name": "body",
+        "in": "body",
+        "description": "Send Comment",
+        "required": true,
+        "schema": {
+          "$ref": "#/definitionComment/SendComment"
+        }
       }
+
     ],
     "responses": {
-      "200": {
+      "201": {
         "description": "Success"
       }
     }
@@ -407,6 +390,13 @@
     "summary": "Get all comments with the specified ArticleId",
     "description": "Get all comments with the specified ArticleId",
     "operationId": "getAllCommentsWithArticleId",
+    "parameters": [
+      {
+        "name": "articleId",
+        "in": "path",
+        "description": "articleId",
+        "required": true
+      }],
     "responses": {
       "200": {
         "description": "Success"
@@ -422,6 +412,41 @@
             "type": "string"
           },
           "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "definitionComment": {
+      "SendComment": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "definition": {
+      "SendMessage": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "location": {
             "type": "string"
           }
         }
