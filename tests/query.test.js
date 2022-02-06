@@ -7,6 +7,10 @@ import User from "./../src/models/user.js";
 
 chai.use(chaiHttp);
 describe("QUERY END-POINT TESTING", () => {
+  before(async () => {
+    await User.deleteOne({ email: userData.email });
+  });
+
   it("Should register the user", (done) => {
     chai
       .request(app)
@@ -63,8 +67,5 @@ describe("QUERY END-POINT TESTING", () => {
         expect(res).to.have.status([404]);
         done();
       });
-  });
-  after(async () => {
-    await User.deleteOne({ email: userData.email });
   });
 });
