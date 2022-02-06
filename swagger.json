@@ -1,0 +1,456 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "API",
+      "description": "API",
+      "version": "1.0.0"
+    },
+    
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "name": "DEV"
+      }
+    ],
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "tags": [
+      {
+        "name": "Home",
+        "description": "Everything about  Users"
+      },
+      {
+        "name": "Users",
+        "description": "Everything about  Users"
+      },
+      {
+        "name": "Articles",
+        "description": "Everything about  Articles"
+      },
+      {
+        "name": "Qeuries",
+        "description": "Everything about  Queries"
+      },
+      {
+        "name": "Comments",
+        "description": "Everything about  Comments"
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "tags": ["Home"],
+          "summary": "Home",
+          "description": "Home",
+          "operationId": "getHome",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/users/register": {
+        "post": {
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": ["Users"],
+          "summary": "Create user",
+          "description": "Create user",
+          "operationId": "postuser",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "formData",
+              "description": "Username",
+              "required": true
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "Email",
+              "required": true
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "description": "Password",
+              "required": true
+            },
+            {
+              "name": "picture",
+              "in": "formData",
+              "type": "file",
+              "description": "Image",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/users/login": {
+        "post": {
+          "tags": ["Users"],
+          "summary": "Login",
+          "description": "Login",
+          "operationId": "postUsersLogin",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "description": "Login",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/api/v1/aritcles": {
+        "post": {
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": ["Articles"],
+          "summary": "Create article",
+          "description": "Create article",
+          "operationId": "postArticles",
+          "parameters": [
+            {
+              "name": "title",
+              "in": "formData",
+              "description": "title",
+              "required": true
+            },
+            {
+              "name": "content",
+              "in": "formData",
+              "description": "content",
+              "required": true
+            },
+            {
+              "name": "image",
+              "in": "formData",
+              "type": "file",
+              "description": "image",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "security": [
+            {
+              "Bearer": []
+            }
+          ]
+        },
+        "get": {
+          "tags": ["Articles"],
+          "summary": "Get all articles",
+          "description": "Get all articles",
+          "operationId": "getArticles",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }}
+        },
+        "/api/v1/aritcles/{id}": {
+          "get": {
+            "tags": ["Articles"],
+            "summary": "Get one articles",
+            "description": "Get one articles",
+            "operationId": "getOneArticle",
+
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "Add Aricle Id",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success"
+              }
+            }
+          },
+          "delete": {
+            "tags": ["Articles"],
+            "summary": "Delete one articles",
+            "description": "deleteone articles",
+            "operationId": "deleteOneArticle",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "Add Aricle Id",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success"
+              }
+            },
+            "security": [
+              {
+                "Bearer": []
+              }
+            ]
+          },
+          "put": {
+            "tags": ["Articles"],
+            "summary": "update article",
+            "description": "Update article",
+            "operationId": "updateArticles",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "Add Aricle Id",
+                "required": true
+              },
+              {
+                "name": "title",
+                "in": "formData",
+                "description": "title",
+                "required": true
+              },
+              {
+                "name": "content",
+                "in": "formData",
+                "description": "content",
+                "required": true
+              },
+              {
+                "name": "image",
+                "in": "formData",
+                "type": "file",
+                "description": "image",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success"
+              }
+            },
+            "security": [
+              {
+                "Bearer": []
+              }
+            ]
+          }
+        },
+
+  "/api/v1/queries": {
+    "post": {
+      "tags": ["Qeuries"],
+      "summary": "Send message",
+      "description": "Send message",
+      "operationId": "SendMessage",
+      "parameters": [
+        {
+          "name": "body",
+          "in": "body",
+          "description": "Send message",
+          "required": true,
+          "schema": {
+            "$ref": "#/definition/SendMessage"
+          }
+        }
+      ],
+      "responses": {
+        "201": {
+          "description": "Success"
+        }
+      }
+    },
+    "get": {
+      "tags": ["Qeuries"],
+      "summary": "Get all articles",
+      "description": "Get all articles",
+      "operationId": "getArticles",
+      "responses": {
+        "200": {
+          "description": "Success"
+        }
+      },
+      "security": [
+        {
+          "Bearer": []
+        }
+      ]
+    }
+    },
+    "/api/v1/queries/{id}": {
+      "get": {
+        "tags": ["Qeuries"],
+        "summary": "Get one Qeury",
+        "description": "Get one Qeury",
+        "operationId": "GetQeuries",
+
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Add Qeury Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Qeuries"],
+        "summary": "Delete one Qeury",
+        "description": "deleteone Qeury",
+        "operationId": "deleteOneQeury",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Add Qeury Id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+"/api/v1/comments/{articleId}": {
+  "post": {
+    "tags": ["Comments"],
+    "summary": "Send comment to any article using its ID",
+    "description": "Send comment to any article",
+    "operationId": "SendMessage",
+    "parameters": [
+      {
+        "name": "articleId",
+        "in": "path",
+        "description": "articleid",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "Send Comment",
+        "required": true,
+        "schema": {
+          "$ref": "#/definitionComment/SendComment"
+        }
+      }
+
+    ],
+    "responses": {
+      "201": {
+        "description": "Success"
+      }
+    }
+  },
+  "get": {
+    "tags": ["Comments"],
+    "summary": "Get all comments with the specified ArticleId",
+    "description": "Get all comments with the specified ArticleId",
+    "operationId": "getAllCommentsWithArticleId",
+    "parameters": [
+      {
+        "name": "articleId",
+        "in": "path",
+        "description": "articleId",
+        "required": true
+      }],
+    "responses": {
+      "200": {
+        "description": "Success"
+      }
+    }}
+  }
+},
+    "definitions": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "definitionComment": {
+      "SendComment": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "definition": {
+      "SendMessage": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+  
