@@ -133,12 +133,6 @@
           "operationId": "postArticles",
           "parameters": [
             {
-              "name": "Authorization",
-              "in": "header",
-              "description": "Authorization",
-              "required": true
-            },
-            {
               "name": "title",
               "in": "formData",
               "description": "title",
@@ -190,7 +184,7 @@
             "parameters": [
               {
                 "name": "id",
-                "in": "header",
+                "in": "path",
                 "description": "Add Aricle Id",
                 "required": true
               }
@@ -219,7 +213,6 @@
                 "description": "Success"
               }
             },
-
             "security": [
               {
                 "Bearer": []
@@ -233,14 +226,8 @@
             "operationId": "updateArticles",
             "parameters": [
               {
-                "name": "Authorization",
-                "in": "header",
-                "description": "Authorization",
-                "required": true
-              },
-              {
                 "name": "title",
-                "in": "formData",
+                "in": "path",
                 "description": "title",
                 "required": true
               },
@@ -342,7 +329,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "header",
+            "in": "path",
             "description": "Add Qeury Id",
             "required": true
           }
@@ -366,7 +353,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "header",
+            "in": "path",
             "description": "Add Qeury Id",
             "required": true
           }
@@ -392,7 +379,7 @@
     "parameters": [
       {
         "name": "articleid",
-        "in": "formData",
+        "in": "path",
         "description": "articleid",
         "required": true
       },
