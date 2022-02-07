@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-      "title": "API",
-      "description": "API",
+      "title": "My Brand API",
+      "description": "It has the data concerned  with  my brand API  which has the following collections article,queries,comments and users",
       "version": "1.0.0"
     },
     
@@ -228,27 +228,24 @@
               {
                 "name": "id",
                 "in": "path",
-                "description": "Add Aricle Id",
-                "required": true
+                "description": "Add Aricle Id"
               },
               {
                 "name": "title",
                 "in": "formData",
-                "description": "title",
-                "required": true
+                "description": "title"
+              
               },
               {
                 "name": "content",
                 "in": "formData",
-                "description": "content",
-                "required": true
+                "description": "content"
               },
               {
                 "name": "image",
                 "in": "formData",
                 "type": "file",
-                "description": "image",
-                "required": true
+                "description": "image"
               }
             ],
             "responses": {
