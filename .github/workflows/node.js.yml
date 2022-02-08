@@ -9,9 +9,9 @@ env:
 
 on:
   push:
-    branches: [ft-MyBrandAPI-test]
+    branches: [ft-MyBrandAPI-test2]
   pull_request:
-    branches: [ft-MyBrandAPI-test]
+    branches: [ft-MyBrandAPI-test2]
 
 jobs:
   build:
