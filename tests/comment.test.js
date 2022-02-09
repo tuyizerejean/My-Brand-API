@@ -8,7 +8,7 @@ describe("COMMENT END-POINT TESTING", () => {
   it("Should retrieve the comments", (done) => {
     chai
       .request(app)
-      .get("/api/v1/comments/:articleid")
+      .get("/api/v1/comments/61fd6ec1a89ecd7d813c5a3b")
       .send()
       .end((err, res) => {
         expect(res).to.have.property("status");

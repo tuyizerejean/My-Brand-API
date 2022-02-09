@@ -4,8 +4,10 @@ import app from "../src/app.js";
 import {userData,validUser}from "../tests/dummyData.js";
 import "dotenv/config";
 import User from "../src/models/user.js";
+import { query } from "express";
 
 chai.use(chaiHttp);
+let token = "";
 describe("QUERY TESTING", () => {
   before(async () =>{
     await User.deleteMany({email: userData.email})
@@ -29,7 +31,6 @@ describe("QUERY TESTING", () => {
         done();
       });
   });
-  let token = "";
   it("Should loggin the user", (done) => {
     chai
       .request(app)
@@ -53,7 +54,6 @@ describe("QUERY TESTING", () => {
         done();
       });
   });
-
   it("When not logged in, you can not retrieve the queries", (done) => {
     chai
       .request(app)
@@ -76,3 +76,4 @@ describe("QUERY TESTING", () => {
       });
   });
 });
+console.log(token);
