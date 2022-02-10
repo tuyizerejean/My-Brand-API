@@ -6,6 +6,8 @@ name: Node.js CI
 env:
   TEST_DB: ${{ secrets.TEST_DB }}
   JWT_SECRETE: ${{ secrets.JWT_SECRETE }}
+  CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+
 
 on:
   push:
