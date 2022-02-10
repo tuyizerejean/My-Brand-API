@@ -20,16 +20,6 @@ describe("QUERY TESTING", () => {
         done();
       });
   });
-  it("Should not register a user", (done) => {
-    chai
-      .request(app)
-      .post("/api/v1/users/registe")
-      .send(userData)
-      .end((err, res) => {
-
-        done();
-      });
-  });
   let token = "";
   it("Should loggin the user", (done) => {
     chai
