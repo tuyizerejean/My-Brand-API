@@ -70,7 +70,7 @@ describe("ARTICLE END-POINT TESTING", () => {
   it("Should not retrieve one article", (done) => {
     chai
       .request(app)
-      .get("/api/v1/aritc/61fd11824a0d582896b668")
+      .get("/api/v1/aritc/6204460d3bd05d4cdf322d86")
       .send()
       .end((err, res) => {
         expect(res).to.have.status([404]);
@@ -89,7 +89,7 @@ describe("ARTICLE END-POINT TESTING", () => {
   });
 
   it("Should  update one articles", (done) => {
-    chai.request(app).put(`/api/v1/aritcles/6202cfe831321a5e7eaec3cd`)
+    chai.request(app).put(`/api/v1/aritcles/6204e193e55a40c0f85345bd`)
         .set("Authorization", `Bearer ${token}`)
         .set('Content-Type', 'multipart/form-data')
         .field({ title: 'postt1request', content: 'common news' })
@@ -99,6 +99,15 @@ describe("ARTICLE END-POINT TESTING", () => {
             console.log(res);
             done()
         })
+})
+it("Should  delete one articles", (done) => {
+  chai.request(app).delete(`/api/v1/aritcles/6205139260f401886aae0214`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+          expect(res).to.have.status([200])
+          console.log(res);
+          done()
+      })
 })
 });
 
