@@ -46,20 +46,6 @@ describe("ARTICLE END-POINT TESTING", () => {
               done()
           })
   })
-    // let id;
-    it("Should not create the articles without logged in", (done) => {
-        chai.request(app).post("/api/v1/aritcles")
-            .set("Authorization", `${generateToken({ id: 1 })}`)
-            .set('Content-Type', 'multipart/form-data')
-            .field({ title: 'What about Kigali??', content: 'Kigali is looking very good' })
-            .attach('image', './test.jpg')
-            .end((err, res) => {
-                expect(res).to.have.status([401])
-                // id = res.body.data._id;
-                // console.log(res);
-                done()
-            });
-    });
   it("Should retrieve the articles", (done) => {
     chai
       .request(app)
