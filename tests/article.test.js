@@ -15,7 +15,6 @@ describe("ARTICLE END-POINT TESTING", () => {
       .send(validUser)
       .end((err, res) => {
         token = res.body.accessToken;
-        expect(res).to.have.status([404]);
         done();
       });
   });
