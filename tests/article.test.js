@@ -8,7 +8,7 @@ import "dotenv/config";
 chai.use(chaiHttp);
 describe("ARTICLE END-POINT TESTING", () => {
   let token = "";
-  it("Login not found", (done) => {
+  it("Experiencing server error", (done) => {
     chai
       .request(app)
       .post("/api/v1/users/login")
@@ -98,7 +98,7 @@ describe("ARTICLE END-POINT TESTING", () => {
         })
 })
 it("Should  delete one articles", (done) => {
-  chai.request(app).delete(`/api/v1/aritcles/62038b72ed54883c5bb75bf6`)
+  chai.request(app).delete(`/api/v1/aritcles/6204cd2ce8afdd6a09251c73`)
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
           expect(res).to.have.status([200])
