@@ -96,7 +96,9 @@ describe("ARTICLE END-POINT TESTING", () => {
         .attach('image', './test.jpg')
         .end((err, res) => {
             expect(res).to.have.status([200])
+            console.log(res);
             done()
         })
 })
 });
+
