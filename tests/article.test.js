@@ -7,17 +7,15 @@ import "dotenv/config";
 
 chai.use(chaiHttp);
 describe("ARTICLE END-POINT TESTING", () => {
-
-
   let token = "";
-  it("Experiencing server error", (done) => {
+  it("Login not found", (done) => {
     chai
       .request(app)
       .post("/api/v1/users/login")
       .send(validUser)
       .end((err, res) => {
         token = res.body.accessToken;
-        expect(res).to.have.status([500]);
+        expect(res).to.have.status([404]);
         done();
       });
   });
@@ -89,7 +87,7 @@ describe("ARTICLE END-POINT TESTING", () => {
   });
 
   it("Should  update one articles", (done) => {
-    chai.request(app).put(`/api/v1/aritcles/6204460d3bd05d4cdf322d86`)
+    chai.request(app).put(`/api/v1/aritcles/61ff0b4fc7aae2233473e7ab`)
         .set("Authorization", `Bearer ${token}`)
         .set('Content-Type', 'multipart/form-data')
         .field({ title: 'postt1request', content: 'common news' })
@@ -100,7 +98,7 @@ describe("ARTICLE END-POINT TESTING", () => {
         })
 })
 it("Should  delete one articles", (done) => {
-  chai.request(app).delete(`/api/v1/aritcles/6204cd2ce8afdd6a09251c73`)
+  chai.request(app).delete(`/api/v1/aritcles/62038b72ed54883c5bb75bf6`)
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
           expect(res).to.have.status([200])
