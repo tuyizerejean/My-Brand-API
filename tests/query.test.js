@@ -4,7 +4,7 @@ import app from "../src/app.js";
 import {userData,validUser}from "../tests/dummyData.js";
 import "dotenv/config";
 import User from "../src/models/user.js";
-
+import { query } from "express";
 chai.use(chaiHttp);
 describe("QUERY TESTING", () => {
   before(async () =>{
@@ -20,7 +20,7 @@ describe("QUERY TESTING", () => {
         done();
       });
   });
-  let token = "";
+  let token= "";
   it("Should loggin the user", (done) => {
     chai
       .request(app)
@@ -44,7 +44,17 @@ describe("QUERY TESTING", () => {
         done();
       });
   });
-
+  it("Invalid Credentials", (done) => {
+    chai
+      .request(app)
+      .post("/api/v1/users/login")
+      .send()
+      .end((err, res) => {
+        token = res.body.accessToken;
+        expect(res).to.have.status([403]);
+        done();
+      });
+  });
   it("When not logged in, you can not retrieve the queries", (done) => {
     chai
       .request(app)
