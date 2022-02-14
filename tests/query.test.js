@@ -1,17 +1,16 @@
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import app from "../src/app.js";
+import {userData,validUser}from "../tests/dummyData.js";
 import "dotenv/config";
-import { userData, validUser } from "./dummyData.js";
-import User from "./../src/models/user.js";
-
+import User from "../src/models/user.js";
+import { query } from "express";
 chai.use(chaiHttp);
-describe("QUERY END-POINT TESTING", () => {
-  before(async () => {
-    await User.deleteOne({ email: userData.email });
-  });
-
-  it("Should register the user", (done) => {
+describe("QUERY TESTING", () => {
+  before(async () =>{
+    await User.deleteMany({email: userData.email})
+  })
+  it("Should register a user", (done) => {
     chai
       .request(app)
       .post("/api/v1/users/register")
@@ -21,8 +20,7 @@ describe("QUERY END-POINT TESTING", () => {
         done();
       });
   });
-
-  let token = "";
+  let token= "";
   it("Should loggin the user", (done) => {
     chai
       .request(app)
@@ -31,7 +29,6 @@ describe("QUERY END-POINT TESTING", () => {
       .end((err, res) => {
         token = res.body.accessToken;
         expect(res).to.have.status([200]);
-        // console.log(res);
         done();
       });
   });
@@ -43,10 +40,21 @@ describe("QUERY END-POINT TESTING", () => {
       .send()
       .end((err, res) => {
         expect(res).to.have.property("status");
+        expect(res).to.have.status([200]);
         done();
       });
   });
-
+  it("Invalid Credentials", (done) => {
+    chai
+      .request(app)
+      .post("/api/v1/users/login")
+      .send()
+      .end((err, res) => {
+        token = res.body.accessToken;
+        expect(res).to.have.status([403]);
+        done();
+      });
+  });
   it("When not logged in, you can not retrieve the queries", (done) => {
     chai
       .request(app)

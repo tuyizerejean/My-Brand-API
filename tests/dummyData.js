@@ -8,3 +8,7 @@ export const userData = {
   email: "test1@gmail.com",
   password: "Callme123@",
 };
+export const sendComment = {
+  name: "tuyizere",
+  comment: "well done demo",
+        };

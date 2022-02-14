@@ -15,7 +15,7 @@ export const getOneArticleService = async (id) => {
   try {
     const article = await Article.findOne({ _id: id });
     if (!article) {
-      return "article article not found";
+      return "article  not found";
     } else {
       return article;
     }
