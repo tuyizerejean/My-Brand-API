@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import routes from "./routes/index.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
+import cors from "cors";
+import morgan from "morgan";
 import "dotenv/config";
 
 const app = express();
@@ -22,6 +24,8 @@ if (mode === "development") {
   });
 }
 app.use(express.json());
+app.use(morgan('dev'));
+app.use(cors());
 app.use("/api/v1/", routes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(port, () => {
